@@ -1,18 +1,33 @@
 import React from "react";
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import { App } from "./App";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend as Backend } from "react-dnd-html5-backend";
 import { AppStateProvider } from "./state/AppStateContext";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <DndProvider backend={Backend}>
-      <AppStateProvider>
-        <App />
-      </AppStateProvider>
-    </DndProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <DndProvider backend={Backend}>
+//       <AppStateProvider>
+//         <App />
+//       </AppStateProvider>
+//     </DndProvider>
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
+
+
+const root = createRoot(document.getElementById('root')!);
+
+root.render(
+  <StrictMode>
+  <DndProvider backend={Backend}>
+    <AppStateProvider>
+      <App />
+    </AppStateProvider>
+  </DndProvider>
+</StrictMode>,
 );
