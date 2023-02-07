@@ -9,11 +9,12 @@ import { useDrop } from "react-dnd";
 import { isHidden } from "./utils/isHidden";
 
 interface ColumnProps {
-  text: string;
-  id: string;
+  text: string
+  id: string
+  isPreview?: boolean
 }
 
-export const Column = ({ text, id }: ColumnProps) => {
+export const Column = ({ text, id, isPreview }: ColumnProps) => {
   const { draggedItem, getTasksByListId, dispatch } = useAppState();
   const tasks = getTasksByListId(id);
   const ref = useRef<HTMLDivElement>(null);
@@ -40,7 +41,7 @@ export const Column = ({ text, id }: ColumnProps) => {
   drag(drop(ref));
 
   return (
-    <ColumnContainer ref={ref} isHidden={isHidden(draggedItem,"COLUMN",id)}>
+    <ColumnContainer ref={ref} isHidden={isHidden(draggedItem,"COLUMN",id,isPreview)} isPreview={isPreview}>
       <ColumnTitle>{text}</ColumnTitle>
       {tasks.map((task) => (
         <Card text={task.text} key={task.id} id={task.id} />
